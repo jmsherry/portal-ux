@@ -6,6 +6,7 @@ import CoursePage from "./pages/CoursePage";
 import GlossaryPage from "./pages/GlossaryPage";
 import GlossaryTermPage from "./pages/GlossaryTermPage";
 import HomeworkTracker from "./pages/HomeworkTracker";
+import HomeworkListing from "./pages/HomeworkListing";
 import LessonPage from "./pages/LessonPage";
 import Layout from "./components/Layout";
 import "./index.css";
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: "/homework-tracker",
     element:<Layout><HomeworkTracker /></Layout>,
+  },
+  {
+    path: "/homeworks/:studentid/:hwid",
+    element:<Layout><HomeworkListing /></Layout>,
   },
 ]);
 

@@ -1,5 +1,5 @@
 import React from "react";
-import {NavLink} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import course from './../data/course'
 
 const colorMap = new Map([
@@ -16,7 +16,7 @@ function CoursePage() {
       <ul className="mx-auto divide-y divide-gray-200 dark:divide-gray-700 grid grid-cols-12">
           {course.lessons.map(({ _id, title, completed, unit }) => (
             <li key={_id} className={`p-3 sm:p-4 text-left ${completed ? 'bg-neutral-400' : ''} ${colorMap.get(unit)} flex items-center border-black border aspect-square`}>
-              <NavLink to={`/lesson/${title}`} className={unit === 'JS' ? 'text-black' : "text-white"}>{title}</NavLink>
+              <Link to={`/lesson/${title}`} className={unit === 'JS' ? 'text-black' : "text-white"}>{title}</Link>
             </li>
           ))}
         </ul>
