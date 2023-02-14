@@ -5,7 +5,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="text-3xl font-bold underline">Portal UX</h1>
+      <h1 className="text-3xl mb-4 font-bold text-center">Portal UX</h1>
     </div>
   );
 }
