@@ -5,11 +5,17 @@ import { terms } from "../data/glossary";
 
 function GlossaryPage() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [includeNonTechnicalTerms, setIncludeNonTechnicalTerms] = useState(true);
   return (
     <ErrorBoundaryUI>
       <div>
         <h1 className="text-3xl font-bold mb-4">Glossary</h1>
         <form className="mb-8">
+          <div className="mb-4">
+            <label htmlFor="tech-terms" className="mr-4">Include Non-Technical Terms</label>
+            <input type="checkbox" name="tech-terms" id="tech-terms" checked={includeNonTechnicalTerms} onChange={(e) => setIncludeNonTechnicalTerms(e.target.checked)} />
+          </div>
+          <div className="mb-4">
           <label
             htmlFor="search"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -25,10 +31,14 @@ function GlossaryPage() {
             onChange={(e) => setSearchTerm(e.target.value)}
             value={searchTerm}
           />
+          </div>
         </form>
         <p>Term: {searchTerm}</p>
         <ul className="mx-auto divide-y divide-gray-200 dark:divide-gray-700">
-          {terms.filter(({title}) => title.includes(searchTerm)).map(({ _id, title }) => (
+          {terms.filter(({category}) => {
+            if(includeNonTechnicalTerms) return true;
+            return category === 'tech';
+          }).filter(({title}) => title.toLowerCase().includes(searchTerm.toLowerCase())).map(({ _id, title }) => (
             <li key={_id} className="pb-3 sm:pb-4 text-left">
               <NavLink to={`/glossary/${title}`}>{title}</NavLink>
             </li>
